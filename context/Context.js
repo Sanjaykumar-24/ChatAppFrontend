@@ -1,10 +1,12 @@
-import { createContext } from "react"
+import { createContext, useState } from "react"
 export const Context = createContext(null)
-const name = "REACTNATIVE"
 function GlobalContext({children})
 {
+    const [showLoginView,setLoginView] = useState(false)
+    const [registerModel,setRegisterModel] = useState(false)
+    const [loginModel,setLoginModel] = useState(false)
     return (
-        <Context.Provider value={{name}}>
+        <Context.Provider value={{showLoginView,setLoginView,registerModel,setRegisterModel,loginModel,setLoginModel}}>
         {children}
         </Context.Provider>
     )
