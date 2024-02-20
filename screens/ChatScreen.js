@@ -4,7 +4,7 @@ export default function ChatScreen() {
   return (
     <View>
     <Text>
-    ChatScreen
+    ChatApp
     </Text>
     </View>
   )
