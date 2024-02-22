@@ -3,8 +3,8 @@ import {View,Text, Pressable, ImageBackground,StyleSheet,TouchableOpacity,Alert,
 import { Ionicons } from '@expo/vector-icons';
 import bg from '../assets/bg.jpg'
 import { Context } from '../context/Context'
-import { ScrollView, TextInput } from 'react-native-gesture-handler';
-export default function HomeScreen() {
+import {  TextInput } from 'react-native-gesture-handler';
+export default function HomeScreen({navigation}) {
      const {showLoginView,setLoginView} = useContext(Context)
      const {registerModel,loginModel,setRegisterModel,setLoginModel} = useContext(Context)
      return (
@@ -13,7 +13,39 @@ export default function HomeScreen() {
             <View style={{flex:1}}>
             <View style={{width:'100%',flexDirection:'row',justifyContent:'center',alignItems:'center',height:'80%'}}>
             <View style={styles.registerForm}>
-            <Text>sanjay</Text>
+            <View style={{width:'100%',height:'30%',marginTop:'10%',flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+            <TextInput style={{height:'40%',width:'85%',borderWidth:0.5,paddingLeft:10}}/>
+            </View>
+            <View style={{width:'100%',height:'30%',flexDirection:'row',alignItems:'flex-start',justifyContent:'center'}}>
+            <TextInput style={{height:'40%',width:'85%',borderWidth:0.5,paddingLeft:10}}/>
+            </View>
+            <View style={{width:'100%',height:'30%',flexDirection:'row',alignItems:'flex-start',justifyContent:'center'}}>
+            <TouchableOpacity onPress={()=>{
+            navigation.navigate('Chat')
+            setRegisterModel(false)      
+        }} style={{width:'40%',backgroundColor:'blue',height:'35%',flexDirection:'row',justifyContent:'center',alignItems:'center',borderRadius:10}}>
+            <Text>Register..!!</Text>
+            </TouchableOpacity>
+            </View>
+            </View>
+            </View>
+            </View>
+            </Modal>
+            <Modal transparent={true} visible={loginModel}  onRequestClose={()=>{setLoginModel(false)}}>
+            <View style={{flex:1}}>
+            <View style={{width:'100%',flexDirection:'row',justifyContent:'center',alignItems:'center',height:'80%'}}>
+            <View style={styles.registerForm}>
+            <View style={{width:'100%',height:'30%',marginTop:'10%',flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+            <TextInput style={{height:'40%',width:'85%',borderWidth:0.5,paddingLeft:10}}/>
+            </View>
+            <View style={{width:'100%',height:'30%',flexDirection:'row',alignItems:'flex-start',justifyContent:'center'}}>
+            <TextInput style={{height:'40%',width:'85%',borderWidth:0.5,paddingLeft:10}}/>
+            </View>
+            <View style={{width:'100%',height:'30%',flexDirection:'row',alignItems:'flex-start',justifyContent:'center'}}>
+            <TouchableOpacity style={{width:'40%',backgroundColor:'blue',height:'35%',flexDirection:'row',justifyContent:'center',alignItems:'center',borderRadius:10}}>
+            <Text>Login..!!</Text>
+            </TouchableOpacity>
+            </View>
             </View>
             </View>
             </View>
@@ -34,7 +66,9 @@ export default function HomeScreen() {
                 <TouchableOpacity style={styles.register} onPress={()=>setRegisterModel(true)}>
                 <Text>Register</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.login}><Text>Login</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.login} onPress={()=>{setLoginModel(true)}}>
+                <Text>Login</Text>
+                </TouchableOpacity>
                 </View>
                 </View>
                 :
@@ -97,6 +131,7 @@ const styles = StyleSheet.create({
     registerForm:{
         backgroundColor:'white',
         width:'85%',
-        height:'70%'
+        height:'70%',
+        borderRadius:30
     }
 })
