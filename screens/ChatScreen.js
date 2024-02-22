@@ -3,7 +3,9 @@ import {View,Text,StyleSheet, Modal} from 'react-native'
 import { Context } from '../context/Context'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 export default function ChatScreen() {
+
   const {group,setGroup,join,setJoin} = useContext(Context)
+  
   return (
     <View style={{flex:1}}>
 
