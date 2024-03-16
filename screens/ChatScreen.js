@@ -4,16 +4,16 @@ import { Context } from '../context/Context'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 export default function ChatScreen({navigation}) {
 
-  const {group,setGroup,join,setJoin,setGroupId} = useContext(Context)
+  const {group,setGroup,join,setJoin,setGroupId,username} = useContext(Context)
   
   return (
     <View style={{flex:1}}>
     <View style={styles.top}>
-    <Text style={{fontSize:40}}>Welocome</Text>
+    <Text style={{fontSize:40}}>Hi {username}..!!</Text>
     </View>
 
     {group &&
-      <View style={{width:'100%',height:'80%',flexDirection:'row',justifyContent:'center',flexDirection:'row',marginTop:'30%'}}>
+      <View style={{width:'100%',height:'80%',flexDirection:'row',justifyContent:'center',flexDirection:'row',marginTop:'25%'}}>
       <View style={{backgroundColor:'blue',width:'80%',height:'40%',flexDirection:'col',justifyContent:'center'}}>
       <View style={{width:'100%',height:'50%',flexDirection:'column',justifyContent:'space-evenly',alignItems:'center'}}>
       <TextInput onChangeText={(e)=>{setGroupId(e)}} style={{width:'85%',height:'40%',borderColor:'white',borderWidth:0.5,paddingLeft:'5%'}}/>
@@ -31,7 +31,7 @@ export default function ChatScreen({navigation}) {
      }
 
    {join &&
-    <View style={{width:'100%',height:'80%',flexDirection:'row',justifyContent:'center',flexDirection:'row',marginTop:'30%'}}>
+    <View style={{width:'100%',height:'80%',flexDirection:'row',justifyContent:'center',flexDirection:'row',marginTop:'25%'}}>
       <View style={{backgroundColor:'blue',width:'80%',height:'40%',flexDirection:'col',justifyContent:'center'}}>
       <View style={{width:'100%',height:'50%',flexDirection:'column',justifyContent:'space-evenly',alignItems:'center'}}>
       <TextInput onChangeText={(e)=>{setGroupId(e)}} style={{width:'85%',height:'40%',borderColor:'white',borderWidth:0.5,paddingLeft:'5%'}}/>
@@ -49,7 +49,7 @@ export default function ChatScreen({navigation}) {
    }
   
     <View style={styles.bottom}>
-    <View style={{width:'80%',height:'80%'}}>
+    <View style={{width:'80%',height:'90%'}}>
     <TouchableOpacity style={styles.group} onPress={()=>{
       if(!join)
       {
