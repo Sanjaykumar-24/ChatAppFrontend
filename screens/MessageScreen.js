@@ -6,32 +6,23 @@ import { StatusBar } from 'expo-status-bar'
 import { FlatList,TextInput } from 'react-native-gesture-handler'
 export default function MessageScreen()
 {
-  const socket = io('http://172.16.123.22:5000')
+  const socket = io('http://192.168.80.237:5000')
   const {groupId,setMessage,message,username} = useContext(Context)
   const [data,setData] = useState([])
 
   useEffect(() => {
-    socket.on('connect', () => {
-      console.log('Connected to server');
-      socket.emit('joinRoom', { room: groupId });
-    });
-  
-    const handleData = (newData) => {
-      console.log('Received new data:', newData);
-      setData(prevData => [newData, ...prevData]);
-    };
-  
-    socket.on('data', handleData);
-  
-    return () => {
-      socket.off('data', handleData);
+    if (socket) {
+      console.log('Socket connected');
+      socket.on('roomMessage', (data) => {
+        console.log(data)
+        setData('')
+        setData(prev=>[data,...prev])
+      })
     }
-  }, [socket]);
-  
-
+  }, [socket])
   
   const addmessage = () =>{
-    socket.emit('message',{name:username,message:message,room:groupId})
+    socket.emit('newMessage',{message:message,roomId:groupId,name:username})
     setMessage('')
   }
   return (
